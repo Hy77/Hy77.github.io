@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modular Pipe Inspection Robot Drive System</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container project-page">
+    <a href="../index.html" class="back-link">Back to Home</a>
+
+    <h1>Modular Pipe Inspection Robot Drive System</h1>
+    <p class="project-subtitle">
+      An industry-sponsored modular robot prototype designed for inspection-oriented pipe navigation,
+      featuring Mecanum-based drive, flexible inter-module connection, and compact electromechanical integration
+      for 150 mm pipe environments.
+    </p>
+
+    <!-- Hero Image -->
+    <img src="../images/pipe_rob/hero.jpg" alt="Pipe robot prototype inside transparent test pipe" class="hero-project-image pipe-hero" />
+
+    <!-- Quick Overview -->
+    <section class="project-section">
+      <div class="overview-grid">
+        <div>
+          <h3>Problem</h3>
+          <p>
+            Develop a compact modular robot that can navigate inside 150 mm pipes, move in multiple directions,
+            handle bends and 4-way intersections, and support future inspection and repair use cases.
+          </p>
+        </div>
+        <div>
+          <h3>My Role</h3>
+          <p>
+            Motor integration, embedded control setup, inter-module joint design, cable routing,
+            prototype iteration, and validation testing.
+          </p>
+        </div>
+        <div>
+          <h3>Outcome</h3>
+          <p>
+            Built and validated a drive-capable robot module with a redesigned joint that achieved
+            full bending motion, modular maintenance, and stable pipe navigation performance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Context -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Project Context</h2>
+        <p>
+          This project was developed in response to a real utility infrastructure problem: enabling robotic
+          platforms to move through water pipes for future inspection and maintenance tasks. The design had
+          to fit within a 150 mm pipe while supporting forward and backward motion, rotation in place,
+          bend navigation, and eventual traversal of 4-way intersections.
+        </p>
+        <p>
+          The system architecture used two compact robot sections connected through a flexible joint.
+          Each section integrated wheels, motors, structure, and embedded electronics within a constrained
+          chassis envelope.
+        </p>
+      </div>
+      <img src="../images/pipe_rob/context.jpg" alt="Pipe robot CAD and project context" class="side-image" />
+    </section>
+
+    <!-- Drive Module Selection -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Drive Module and Wheel Selection</h2>
+        <p>
+          A major early design decision was the drive strategy. The module needed multidirectional motion
+          and controllability while maintaining top-bottom contact inside the pipe. After comparing candidate
+          wheel types, Mecanum wheels were selected as the most balanced option for mobility, size, traction,
+          and controllability under the project constraints.
+        </p>
+        <p>
+          This selection supported lateral motion, in-place turning, and smoother navigation through confined
+          pipe sections compared with alternative wheel concepts. The pipe robot design notes also highlighted
+          the tight spatial constraints and the need to preserve room for suspension and chassis components. 
+        </p>
+      </div>
+      <img src="../images/pipe_rob/drive.jpg" alt="Drive module concept and wheel selection" class="side-image" />
+    </section>
+
+    <!-- Joint Design -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Inter-Module Joint Design</h2>
+        <p>
+          The connection joint between the two modules was a key subsystem. It needed to support bending,
+          hold the robot securely during climbing, allow fast assembly and removal, and provide a protected
+          path for cables between sections.
+        </p>
+        <p>
+          The first iteration used a pin-based swivel concept, but testing showed deformation under load
+          and poor cable routing. I then redesigned the connection into a hook-and-shaft mechanism with an
+          internal cable channel, improved geometry, and passive restoring support. This second iteration
+          achieved a much stronger and more maintainable solution.
+        </p>
+      </div>
+      <img src="../images/pipe_rob/joint.jpg" alt="Joint design iterations for pipe robot" class="side-image" />
+    </section>
+
+    <!-- Embedded Integration -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Motor Integration and Embedded Control</h2>
+        <p>
+          I integrated the motors with the Arduino Nano and PCA9685 control board, including wiring,
+          power routing, servo channel allocation, and speed control logic. During early testing, all
+          motors running simultaneously caused voltage drop and intermittent response.
+        </p>
+        <p>
+          To solve this, I implemented a staggered startup strategy so motors were activated in pairs with
+          short delays. This improved voltage stability and gave consistent motor response while staying
+          within the power budget of the system.
+        </p>
+      </div>
+      <img src="../images/pipe_rob/control.jpg" alt="Embedded control and motor integration" class="side-image" />
+    </section>
+
+    <!-- Validation -->
+    <section class="project-section">
+      <h2>Validation in Pipe Test Rig</h2>
+      <p>
+        The prototype was tested in a transparent pipe rig to verify system-level behaviour. Validation targets
+        included fit within a 150 mm pipe, forward and backward motion, in-pipe rotation, bend compatibility,
+        modular installation/removal, and load-bearing stability during operation.
+      </p>
+
+      <div class="overview-grid">
+        <div>
+          <h3>Pipe Fit</h3>
+          <p>Validated against the 150 mm pipe constraint with compact chassis and drive layout.</p>
+        </div>
+        <div>
+          <h3>Joint Performance</h3>
+          <p>The revised joint achieved full bending capability and supported higher load without deformation.</p>
+        </div>
+        <div>
+          <h3>System Reliability</h3>
+          <p>Integrated wiring, cable routing, and motor startup logic improved repeatability and maintenance.</p>
+        </div>
+      </div>
+
+      <img src="../images/pipe_rob/validation.jpg" alt="Pipe robot testing and validation" class="section-image" />
+    </section>
+
+    <!-- Key Findings -->
+    <section class="project-section">
+      <h2>Key Findings</h2>
+      <p>
+        This project demonstrated the value of iterative electromechanical prototyping under realistic constraints.
+        The strongest engineering lesson came from subsystem redesign: the initial joint concept was insufficient
+        under load and cable-routing requirements, but targeted iteration led to a much more robust connection
+        architecture. On the control side, small embedded changes such as staggered startup had a significant
+        impact on real hardware reliability.
+      </p>
+      <p>
+        Overall, the project strengthened my experience in modular robot design, hardware-software integration,
+        3D printed mechanical iteration, and validation-oriented engineering development.
+      </p>
+    </section>
+
+    <!-- Future Direction -->
+    <section class="project-section">
+      <h2>Future Direction</h2>
+      <p>
+        Future work would focus on expanding autonomy and robustness, including improved sensing, leak-detection
+        payload integration, waterproofing considerations, and more advanced navigation through complex pipe networks.
+        The current prototype provides a solid mechanical and control foundation for those later inspection-oriented upgrades.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

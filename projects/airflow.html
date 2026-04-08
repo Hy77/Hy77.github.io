@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geometric Feature Analysis of Nasal Airflow Images</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container project-page">
+    <a href="../index.html" class="back-link">Back to Home</a>
+
+    <h1>Geometric Feature Analysis of Nasal Airflow Images</h1>
+    <p class="project-subtitle">
+      A clinical image analysis workflow for extracting geometric features from nasal airflow images
+      and linking them to objective airway resistance and subjective symptom scores.
+    </p>
+
+    <!-- Hero Image -->
+    <img src="../images/airflow/hero.jpg" alt="Nasal airflow image" class="hero-project-image" />
+
+    <!-- Quick Overview -->
+    <section class="project-section">
+      <div class="overview-grid">
+        <div>
+          <h3>Problem</h3>
+          <p>Transform noisy clinical airflow images into reliable geometric representations for quantitative analysis.</p>
+        </div>
+        <div>
+          <h3>My Role</h3>
+          <p>Designed the image processing pipeline, skeleton extraction, feature engineering framework, and predictive modelling workflow.</p>
+        </div>
+        <div>
+          <h3>Outcome</h3>
+          <p>Built a robust methodology that extracted large-scale geometric features and revealed strong links with objective airway resistance measurements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- System Overview -->
+    <section class="project-section">
+      <h2>Methodology Overview</h2>
+      <p>
+        This project developed a structured pipeline for analysing nasal airflow images from clinical
+        measurements. The workflow standardised input images, removed labels and grid artifacts,
+        extracted clean skeleton curves, grouped the nasal geometry into left and right structures,
+        and computed a large set of geometric, asymmetry, curvature, derivative, and frequency-based features.
+      </p>
+      <img src="../images/airflow/workflow.jpg" alt="Methodology overview" class="section-image" />
+    </section>
+
+    <!-- Preprocessing -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Image Preprocessing</h2>
+        <p>
+          Input images were standardised to a consistent size, enhanced through brightness and contrast
+          adjustment, and cleaned by removing fixed labels and measurement markers. Grid lines were then
+          reduced to isolate the clinically relevant flow structure for later geometric analysis.
+        </p>
+      </div>
+      <img src="../images/airflow/hero.jpg" alt="Preprocessing results" class="side-image" />
+    </section>
+
+    <!-- Skeletonization -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Skeletonization & Coordinate Structuring</h2>
+        <p>
+          The cleaned image was converted into a single-pixel skeleton using thinning-based morphology.
+          Additional filtering removed artifacts and tail edges, while the central intersection point was
+          estimated to separate the geometry into left and right curve groups for consistent downstream analysis.
+        </p>
+      </div>
+      <img src="../images/airflow/skeleton.jpg" alt="Skeletonized nasal cavity structure" class="side-image airflow-square" />
+    </section>
+
+    <!-- Polynomial Features -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Polynomial & Geometric Feature Extraction</h2>
+        <p>
+          Multi-degree polynomial fitting was used to model the nasal cavity geometry at different levels of detail.
+          Beyond raw coefficients, the framework extracted curvature, tortuosity, asymmetry, energy, derivative,
+          Fourier, width, and angular features, generating hundreds of quantitative descriptors per image.
+        </p>
+      </div>
+      <img src="../images/airflow/polynomial.jpg" alt="Polynomial fitting examples" class="side-image airflow-square" />
+    </section>
+
+    <!-- Correlation Analysis -->
+    <section class="project-section two-column">
+        <div>
+            <h2>Clinical Correlation Analysis</h2>
+            <p>
+            Extracted geometric features were evaluated against both subjective symptom scores and
+            objective nasal airway resistance (NAR) measurements. While no strong correlation was
+            observed with patient-reported symptom scores, the polynomial and asymmetry-based features
+            showed strong relationships with objective NAR values. This provides an important technical
+            validation that the extracted geometric representation is physiologically meaningful, even
+            if its relationship with subjective symptoms remains unclear.
+            </p>
+            <p>
+            The absence of a strong subjective correlation may reflect limited sample size,
+            variability in patient-reported scoring, or a genuinely weak relationship between
+            perceived symptoms and measurable airflow geometry.
+            </p>
+        </div>
+        <img src="../images/airflow/correlation.jpg" alt="Correlation analysis or summary result" class="side-image" />
+    </section>
+
+    <!-- Key Findings -->
+    <section class="project-section">
+        <h2>Key Findings</h2>
+            <p>
+                The pipeline generated approximately 500–800 geometric descriptors per image across
+                polynomial, asymmetry, curvature, derivative, and frequency domains. The strongest
+                validation signal came from objective NAR measurements, indicating that the extracted
+                polynomial geometry reliably captures measurable airflow structure.
+            </p>
+            <p>
+                In contrast, no clear correlation was found with subjective symptom scores. This does
+                not necessarily invalidate the methodology; rather, it suggests that patient-reported
+                obstruction may depend on additional physiological, neurological, or perceptual factors
+                beyond the geometric patterns captured in these airflow images.
+            </p>
+            <p>
+                Another possibility is that the current dataset size was insufficient to reveal weaker
+                subjective relationships. Regardless, the strong objective validation supports the
+                technical correctness of the polynomial-based feature extraction framework.
+            </p>
+      <div class="overview-grid">
+        <div>
+          <h3>Feature Scale</h3>
+          <p>Hundreds of features per image across morphology, asymmetry, curvature, derivatives, and frequency domains.</p>
+        </div>
+        <div>
+          <h3>Strongest Signal</h3>
+          <p>Objective NAR measurements showed very strong geometric relationships, with correlations reported up to 0.949.</p>
+        </div>
+        <div>
+          <h3>Clinical Insight</h3>
+          <p>Extracted geometric descriptors were compared against both subjective symptom scores
+            and objective nasal airway resistance (NAR) measurements. The strongest correlations
+            were consistently observed with objective NAR values.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Future Direction -->
+    <section class="project-section">
+        <h2>Future Direction</h2>
+        <p>
+            Future work will focus on expanding the clinical dataset and integrating additional
+            multimodal inputs, such as patient symptom history and complementary physiological
+            measurements, to better investigate the weak relationship between image-derived
+            geometry and subjective symptom perception.
+        </p>
+        <p>
+            On the technical side, the feature engineering framework can be extended with more
+            advanced shape descriptors and learned representations, providing a stronger basis
+            for predictive modelling and clinical decision support.
+        </p>
+    </section>
+  </main>
+</body>
+</html>

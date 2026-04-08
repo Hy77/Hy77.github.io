@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Active RGB-D Camera Positioning for Robust Object Detection</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container project-page">
+    <a href="../index.html" class="back-link">Back to Home</a>
+
+    <h1>Active RGB-D Camera Positioning for Robust Object Detection</h1>
+    <p class="project-subtitle">
+      A RealSense D435-based active perception system that dynamically optimizes camera viewpoints
+      to improve object detection confidence under occlusion, distance, and lighting challenges.
+    </p>
+
+    <!-- Hero Image -->
+    <img src="../images/rgbd/hero.jpg" alt="RGB-D active perception system" class="hero-project-image" />
+
+    <!-- Quick Overview -->
+    <section class="project-section">
+      <div class="overview-grid">
+        <div>
+          <h3>Problem</h3>
+          <p>Detect a target object reliably in cluttered scenes with occlusion, poor viewpoint, and strong light interference.</p>
+        </div>
+        <div>
+          <h3>My Role</h3>
+          <p>Designed the detection logic, confidence improvement strategy, object finding strategy, and real-time camera guidance workflow.</p>
+        </div>
+        <div>
+          <h3>Outcome</h3>
+          <p>Built a real-time RGB-D perception system that guided viewpoint adjustments to improve detection reliability and recover hidden targets.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- System Overview -->
+    <section class="project-section">
+      <h2>System Overview</h2>
+      <p>
+        This project explored active perception using an Intel RealSense D435 camera. The system first
+        detects a coke can using HSV colour filtering and depth information, then evaluates whether the
+        current viewpoint is suitable. If confidence is low, it issues camera movement instructions to
+        improve alignment, reduce occlusion, and avoid glare. If the can cannot be detected, the system
+        initiates an object-finding strategy to explore less cluttered regions and search behind obstacles.
+      </p>
+      <img src="../images/rgbd/workflow.jpg" alt="RGB-D system workflow" class="section-image" />
+    </section>
+
+    <!-- Detection Module -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Detection Module</h2>
+        <p>
+          The detection pipeline combines HSV colour filtering with depth-based dimension checks to identify
+          a coke can candidate. The colour filter isolates likely red targets, while depth data from the
+          RealSense D435 is used to estimate object size and validate whether the detected object matches
+          expected coke can dimensions.
+        </p>
+      </div>
+      <img src="../images/rgbd/detection.jpg" alt="HSV and depth-based detection" class="side-image" />
+    </section>
+
+    <!-- Confidence Improvement -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Confidence Improvement Strategy</h2>
+        <p>
+          When detection confidence drops below the desired threshold, the system uses a reward-based strategy
+          to improve visibility. Adjustments are prioritised based on whether the object is off-centre, too far,
+          too close, partially blocked, or affected by strong light reflections. The result is a practical,
+          real-time guidance system for improving the camera viewpoint.
+        </p>
+      </div>
+      <img src="../images/rgbd/confidence.jpg" alt="Confidence improvement strategy" class="side-image" />
+    </section>
+
+    <!-- Object Finding -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Object Finding Strategy</h2>
+        <p>
+          If the target object is not detected at all, the system switches to an exploration mode. It segments
+          visible objects on the left and right sides of the frame, identifies less cluttered directions, and
+          recommends motion paths that help the camera search behind obstacles and recover the target.
+        </p>
+      </div>
+      <img src="../images/rgbd/finding.jpg" alt="Object finding strategy" class="side-image" />
+    </section>
+
+    <!-- Quantitative Results -->
+    <section class="project-section">
+      <h2>Quantitative Results</h2>
+      <p>
+        Experimental results showed that the system increased detection confidence over time as the camera
+        navigated around obstacles and refined its viewpoint. Additional metrics tracked distance to the target
+        and the number of bright light spots, demonstrating that the system could both approach the object
+        effectively and reduce glare through repositioning.
+      </p>
+
+      <div class="result-grid-3">
+        <img src="../images/rgbd/confidence-graph.jpg" alt="Confidence vs time graph" class="result-chart" />
+        <img src="../images/rgbd/distance-graph.jpg" alt="Distance vs time graph" class="result-chart" />
+        <img src="../images/rgbd/light-graph.jpg" alt="Bright light spots vs time graph" class="result-chart" />
+      </div>
+    </section>
+
+    <!-- Final Reflection -->
+    <section class="project-section">
+      <h2>Future Direction</h2>
+      <p>
+        While the current implementation provides movement guidance to a human operator, the system was
+        designed as a foundation for future fully autonomous camera control. The project demonstrates how
+        active viewpoint optimisation can improve object detection reliability and provides a strong basis
+        for future robotic perception and autonomous inspection systems.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

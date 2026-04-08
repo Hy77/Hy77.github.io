@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>End-to-End Deep Reinforcement Learning for Super Mario</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container project-page">
+    <a href="../index.html" class="back-link">Back to Home</a>
+
+    <h1>End-to-End Deep Reinforcement Learning for Super Mario</h1>
+    <p class="project-subtitle">
+      A CNN + DQN reinforcement learning system trained end-to-end to autonomously complete
+      Super Mario Bros levels through feature learning, experience replay, and policy optimisation.
+    </p>
+
+    <img src="../images/mario/hero.jpg" alt="Mario RL gameplay" class="hero-project-image mario-hero" />
+
+    <section class="project-section">
+      <div class="overview-grid">
+        <div>
+          <h3>Problem</h3>
+          <p>Train an agent to learn game-state representation and complete Mario levels through reinforcement learning.</p>
+        </div>
+        <div>
+          <h3>My Role</h3>
+          <p>Designed the CNN + DQN pipeline, environment wrappers, replay logic, training scripts, and evaluation experiments.</p>
+        </div>
+        <div>
+          <h3>Outcome</h3>
+          <p>Achieved consistent flag-reaching behaviour after approximately 60k training episodes by switching from separate CNN/DQN training to end-to-end joint optimisation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-section">
+        <h2>Training Evolution</h2>
+        <p>
+            The first version trained the CNN feature extractor and DQN separately, which led to weak
+            feature-policy alignment and inconsistent gameplay performance. In the second version, both
+            networks were trained jointly as a single end-to-end model, allowing visual representation
+            learning to directly optimise decision quality.
+        </p>
+        <p>
+            This redesign significantly improved policy stability and allowed the agent to complete the level much more consistently than the earlier training strategy.
+        </p>
+        <p>
+            And the final model was trained for approximately 60k episodes over around 50 hours on an NVIDIA RTX 3070, with the best checkpoint showing reliable level completion.
+        </p>
+
+        <div class="gif-compare-grid">
+            <div>
+            <img src="../images/mario/ver1.gif" alt="Version 1 Mario RL" class="section-image" />
+            <p class="image-caption">Version 1 – Separate CNN and DQN training</p>
+            </div>
+            <div>
+            <img src="../images/mario/ver2.gif" alt="Version 2 Mario RL" class="section-image" />
+            <p class="image-caption">Version 2 – End-to-end joint optimisation</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <h2>Policy Evaluation via Epsilon Decay Test</h2>
+        <p>
+            To further validate policy robustness, I conducted a 100-episode epsilon decay experiment.
+            The first 50 episodes used full exploration (epsilon = 1.0), while the remaining 50 gradually
+            reduced epsilon to 0.1 to shift toward exploitation.
+        </p>
+        <p>
+            The reward trend improved significantly as the agent transitioned from exploration to exploitation.
+            Peaks near 3000 reward indicate successful flag completion and confirm that the learned policy
+            generalised well beyond the original training run.
+        </p>
+
+        <img src="../images/mario/eval_metric.jpg" alt="Mario RL epsilon decay evaluation" class="section-image" />
+    </section>
+
+    <section class="project-section">
+      <h2>Key Findings</h2>
+      <p>
+        The most important lesson from this project was that feature learning and policy optimisation
+        should be trained jointly in visually complex environments. Separating CNN pretraining from
+        DQN learning introduced representation mismatch, while end-to-end optimisation produced a far
+        more stable and successful policy.
+      </p>
+      <p>
+        It also strengthened my experience in PyTorch-based model development, GPU training workflows,
+        custom environment abstraction, and experimental policy evaluation.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

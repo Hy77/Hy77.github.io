@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>36th WARMAN Competition Robot Design and Integration</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container project-page">
+    <a href="../index.html" class="back-link">Back to Home</a>
+
+    <h1>36th WARMAN Competition Robot Design and Integration</h1>
+    <p class="project-subtitle">
+      A competition-driven mechatronics robot designed for ball collection, silo placement,
+      and stable mobile manipulation under strict size, weight, and time constraints.
+    </p>
+
+    <!-- Hero Image -->
+    <img src="../images/warman/hero.jpg" alt="WARMAN robot overview" class="hero-project-image" />
+
+    <section class="project-section warman-track-section">
+        <h3>Competition Track Context</h3>
+        <img src="../images/warman/track.jpg" alt="WARMAN competition field layout" class="warman-track" />
+    </section>
+
+    <!-- Quick Overview -->
+    <section class="project-section">
+      <div class="overview-grid">
+        <div>
+          <h3>Problem</h3>
+          <p>Design and build a robot under competition constraints to collect balls and place them into silos within a limited time.</p>
+        </div>
+        <div>
+          <h3>My Role</h3>
+          <p>Team leader, chassis designer, lead programmer, and contributor to system integration, component selection, and testing.</p>
+        </div>
+        <div>
+          <h3>Outcome</h3>
+          <p>Developed an integrated robot platform combining mobile base, anti-rollover support, robotic arm extension, and embedded control logic.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- System Overview -->
+    <section class="project-section">
+      <h2>System Overview</h2>
+      <p>
+        The WARMAN robot was designed to collect tennis and squash balls and place them into
+        silos of different heights under strict competition limits on footprint, weight, and task time.
+        The final system combined a Mecanum-wheel mobile base, a robotic arm, a collector mechanism,
+        and anti-rollover support to improve stability during arm extension and placement.
+      </p>
+      <img src="../images/warman/workflow.jpg" alt="WARMAN system overview" class="section-image" />
+    </section>
+
+    <!-- Design Process -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Requirement-Driven Design Process</h2>
+        <p>
+          The design process used requirement analysis, morphological tables, and scoring matrices
+          to evaluate alternatives for chassis layout, support mechanisms, manufacturability, weight,
+          cost, and stability. This helped guide concept selection in a structured engineering way
+          rather than relying only on intuition.
+        </p>
+      </div>
+      <img src="../images/warman/design.jpg" alt="Requirement analysis and concept selection" class="side-image" />
+    </section>
+
+    <!-- Mechanical Design -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Base and Anti-Rollover Mechanism</h2>
+        <p>
+          A major design challenge was maintaining stability while the arm extended toward the silo.
+          The chassis incorporated anti-rollover protection and later evolved into an extendable support
+          mechanism to improve the robot’s stability without violating competition size limits.
+        </p>
+      </div>
+      <img src="../images/warman/base.jpg" alt="Base and anti-rollover design" class="side-image" />
+    </section>
+
+    <!-- Embedded Control -->
+    <section class="project-section two-column">
+      <div>
+        <h2>Embedded Control and Mecanum Drive</h2>
+        <p>
+          The robot was controlled using an Arduino Mega2560 with TB6612-based motor driving logic.
+          The control structure supported Mecanum wheel motion, arm actuation, collection control,
+          and coordinated task execution through modular embedded code.
+        </p>
+      </div>
+      <img src="../images/warman/control.jpg" alt="Embedded control and motor selection" class="side-image" />
+    </section>
+
+    <!-- Integration -->
+    <section class="project-section two-column">
+      <div>
+        <h2>System Integration</h2>
+        <p>
+          The final robot integrated mechanical structure, wiring, control electronics, and motion logic
+          into a complete competition-ready system. This project strengthened my experience in
+          design-for-manufacture, hardware-software integration, and iterative testing under real constraints.
+        </p>
+      </div>
+      <img src="../images/warman/integration.jpg" alt="Wiring and system integration" class="side-image" />
+    </section>
+
+    <!-- Key Takeaways -->
+    <section class="project-section">
+      <h2>Key Takeaways</h2>
+      <p>
+        This project was a strong exercise in full-cycle mechatronics engineering: translating task requirements
+        into mechanical concepts, validating design trade-offs, building the robot, and implementing the
+        embedded control logic needed to coordinate the full system.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
