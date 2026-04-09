@@ -3,94 +3,200 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>End-to-End Deep Reinforcement Learning for Super Mario</title>
-  <link rel="stylesheet" href="../style_ver1.css" />
+  <title>End-to-End Deep Reinforcement Learning for Super Mario — Haiyang Sun</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230f2027'/><text y='.9em' font-size='62' x='12' font-family='Georgia,serif' fill='%234ade80'>H</text></svg>">
+  <link rel="stylesheet" href="project.css" />
 </head>
 <body>
-  <main class="container project-page">
-    <a href="../index.html" class="back-link">Back to Home</a>
 
-    <h1>End-to-End Deep Reinforcement Learning for Super Mario</h1>
-    <p class="project-subtitle">
-      A CNN + DQN reinforcement learning system trained end-to-end to autonomously complete
-      Super Mario Bros levels through feature learning, experience replay, and policy optimisation.
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">hs.dev</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#projects"><span>//</span>projects</a></li>
+    <li><a href="../index.html#contact"><span>//</span>contact</a></li>
+  </ul>
+</nav>
+
+<main class="project-page">
+
+  <!-- BACK -->
+  <a href="../index.html" class="back-link">
+    <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    back to home
+  </a>
+
+  <!-- HEADER -->
+  <header class="reveal">
+    <div class="project-eyebrow">// reinforcement learning · deep learning · game ai</div>
+    <div class="project-header">
+      <h1>End-to-End Deep<br><em>Reinforcement Learning</em> for Super Mario</h1>
+      <p class="project-subtitle">
+        A CNN + DQN game-playing agent trained end-to-end to complete Super Mario Bros levels,
+        learning visual representation and control policy jointly through replay memory,
+        target networks, and iterative evaluation.
+      </p>
+    </div>
+    <div class="project-meta">
+      <span class="meta-tag">Python</span>
+      <span class="meta-tag">PyTorch</span>
+      <span class="meta-tag">CNN</span>
+      <span class="meta-tag">DQN</span>
+      <span class="meta-tag">GPU Training</span>
+      <span class="meta-tag">Game AI</span>
+      <span class="meta-tag date">2024</span>
+    </div>
+  </header>
+
+  <!-- HERO IMAGE -->
+  <img src="../images/mario/hero.jpg" alt="Mario RL gameplay" class="hero-project-image reveal" />
+
+  <!-- OVERVIEW -->
+  <div class="overview-grid">
+    <div class="overview-card reveal">
+      <h3>Problem</h3>
+      <p>Train an agent to interpret game-state visuals and reach the level flag through reinforcement learning.</p>
+    </div>
+    <div class="overview-card reveal">
+      <h3>My Role</h3>
+      <p>Designed the end-to-end CNN + DQN pipeline, environment wrappers, replay logic, training scripts, and evaluation workflow.</p>
+    </div>
+    <div class="overview-card reveal">
+      <h3>Outcome</h3>
+      <p>Achieved consistent flag-reaching behaviour after ~60k episodes by replacing separated CNN/DQN training with joint optimisation.</p>
+    </div>
+  </div>
+
+  <!-- TRAINING EVOLUTION -->
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">01.</span>
+      <h2>Training Evolution</h2>
+      <div class="section-line"></div>
+    </div>
+    <p>
+      The first version trained the CNN feature extractor and DQN separately, which created weak
+      alignment between learned visual features and the final policy objective. This led to unstable
+      gameplay and inconsistent level completion.
+    </p>
+    <p>
+      In the second version, the architecture was redesigned into a single end-to-end model so that
+      visual representation learning could directly optimise action quality. This significantly improved
+      policy stability and allowed the agent to complete levels much more consistently than the earlier approach.
+    </p>
+    <p>
+      The final model was trained for approximately 60k episodes over around 50 hours on an NVIDIA RTX 3070,
+      with the best checkpoint showing reliable flag-reaching performance.
     </p>
 
-    <img src="../images/mario/hero.jpg" alt="Mario RL gameplay" class="hero-project-image mario-hero" />
-
-    <section class="project-section">
-      <div class="overview-grid">
-        <div>
-          <h3>Problem</h3>
-          <p>Train an agent to learn game-state representation and complete Mario levels through reinforcement learning.</p>
-        </div>
-        <div>
-          <h3>My Role</h3>
-          <p>Designed the CNN + DQN pipeline, environment wrappers, replay logic, training scripts, and evaluation experiments.</p>
-        </div>
-        <div>
-          <h3>Outcome</h3>
-          <p>Achieved consistent flag-reaching behaviour after approximately 60k training episodes by switching from separate CNN/DQN training to end-to-end joint optimisation.</p>
-        </div>
+    <div class="gif-compare-grid">
+      <div>
+        <img src="../images/mario/ver1.gif" alt="Version 1 Mario RL" class="section-image" />
+        <p class="image-caption">Version 1 — Separate CNN and DQN training</p>
       </div>
-    </section>
+      <div>
+        <img src="../images/mario/ver2.gif" alt="Version 2 Mario RL" class="section-image" />
+        <p class="image-caption">Version 2 — End-to-end joint optimisation</p>
+      </div>
+    </div>
+  </section>
 
-    <section class="project-section">
-        <h2>Training Evolution</h2>
+  <!-- MODEL DESIGN -->
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">02.</span>
+      <h2>Learning Architecture</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column">
+      <div>
         <p>
-            The first version trained the CNN feature extractor and DQN separately, which led to weak
-            feature-policy alignment and inconsistent gameplay performance. In the second version, both
-            networks were trained jointly as a single end-to-end model, allowing visual representation
-            learning to directly optimise decision quality.
+          The learning system combined a convolutional neural network as the visual feature extractor
+          with a Deep Q-Network for action-value estimation. Training relied on experience replay,
+          a target network for stability, and epsilon-greedy exploration to balance exploration and exploitation.
         </p>
-        <p>
-            This redesign significantly improved policy stability and allowed the agent to complete the level much more consistently than the earlier training strategy.
-        </p>
-        <p>
-            And the final model was trained for approximately 60k episodes over around 50 hours on an NVIDIA RTX 3070, with the best checkpoint showing reliable level completion.
-        </p>
+        <ul class="project-list">
+          <li>End-to-end CNN + DQN policy learning</li>
+          <li>Replay buffer for sample efficiency and stability</li>
+          <li>Target network updates for controlled convergence</li>
+          <li>Custom environment wrappers for training and evaluation</li>
+        </ul>
+      </div>
+      <div class="highlight-box">
+        <p><strong>Design lesson:</strong> in visually rich RL tasks, representation learning and control policy should be optimised together rather than isolated into separate stages.</p>
+      </div>
+    </div>
+  </section>
 
-        <div class="gif-compare-grid">
-            <div>
-            <img src="../images/mario/ver1.gif" alt="Version 1 Mario RL" class="section-image" />
-            <p class="image-caption">Version 1 – Separate CNN and DQN training</p>
-            </div>
-            <div>
-            <img src="../images/mario/ver2.gif" alt="Version 2 Mario RL" class="section-image" />
-            <p class="image-caption">Version 2 – End-to-end joint optimisation</p>
-            </div>
-        </div>
-    </section>
+  <!-- EVALUATION -->
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">03.</span>
+      <h2>Policy Evaluation</h2>
+      <div class="section-line"></div>
+    </div>
+    <p>
+      To validate the robustness of the learned policy, I conducted a 100-episode epsilon decay experiment.
+      The first 50 episodes used full exploration (epsilon = 1.0), while the remaining 50 gradually reduced
+      epsilon to 0.1, shifting the agent toward exploitation of learned behaviours.
+    </p>
+    <p>
+      Reward improved as the agent moved from exploration to exploitation. Peaks approaching 3000 reward
+      corresponded to successful flag completion, confirming that the policy generalised beyond the original training run.
+    </p>
+    <div class="diagram-card">
+      <img src="../images/mario/eval_metric.jpg" alt="Mario RL epsilon decay evaluation metric" />
+    </div>
+  </section>
 
-    <section class="project-section">
-        <h2>Policy Evaluation via Epsilon Decay Test</h2>
-        <p>
-            To further validate policy robustness, I conducted a 100-episode epsilon decay experiment.
-            The first 50 episodes used full exploration (epsilon = 1.0), while the remaining 50 gradually
-            reduced epsilon to 0.1 to shift toward exploitation.
-        </p>
-        <p>
-            The reward trend improved significantly as the agent transitioned from exploration to exploitation.
-            Peaks near 3000 reward indicate successful flag completion and confirm that the learned policy
-            generalised well beyond the original training run.
-        </p>
-
-        <img src="../images/mario/eval_metric.jpg" alt="Mario RL epsilon decay evaluation" class="section-image" />
-    </section>
-
-    <section class="project-section">
+  <!-- KEY FINDINGS -->
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">04.</span>
       <h2>Key Findings</h2>
-      <p>
-        The most important lesson from this project was that feature learning and policy optimisation
-        should be trained jointly in visually complex environments. Separating CNN pretraining from
-        DQN learning introduced representation mismatch, while end-to-end optimisation produced a far
-        more stable and successful policy.
-      </p>
-      <p>
-        It also strengthened my experience in PyTorch-based model development, GPU training workflows,
-        custom environment abstraction, and experimental policy evaluation.
-      </p>
-    </section>
-  </main>
+      <div class="section-line"></div>
+    </div>
+    <p>
+      The most important takeaway from this project was that feature learning and decision-making must
+      be tightly coupled in complex visual reinforcement learning environments. When the CNN and DQN
+      were trained separately, representation mismatch limited performance; when trained jointly, the
+      policy became significantly more stable and effective.
+    </p>
+    <p>
+      This project strengthened my experience in deep reinforcement learning, PyTorch model development,
+      GPU training workflows, custom environment abstraction, and quantitative policy evaluation.
+    </p>
+  </section>
+
+  <!-- FOOTER NAV -->
+  <div class="project-footer">
+    <a href="../index.html" class="back-proj">
+      <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      all projects
+    </a>
+    <a href="airflow.html" class="next-proj">
+      Geometric Feature Analysis
+      <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <span>Haiyang Sun · Mechatronics Engineer</span>
+  <span>Sydney, AU · <a href="mailto:tedsun7@gmail.com">tedsun7@gmail.com</a></span>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>

@@ -4,160 +4,215 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vision-Guided UR3 Robotic Drawing System — Haiyang Sun</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230f2027'/><text y='.9em' font-size='62' x='12' font-family='Georgia,serif' fill='%234ade80'>H</text></svg>">
   <link rel="stylesheet" href="project.css" />
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-inner">
-    <div class="nav-logo"><span>HS</span> / Portfolio</div>
-    <ul class="nav-links">
-      <li><a href="../index.html#projects">Projects</a></li>
-      <li><a href="../index.html#contact">Contact</a></li>
-    </ul>
-  </div>
+  <a href="../index.html" class="nav-logo">hs.dev</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#projects"><span>//</span>projects</a></li>
+    <li><a href="../index.html#contact"><span>//</span>contact</a></li>
+  </ul>
 </nav>
 
 <main class="project-page">
 
-  <a href="../index.html" class="back-link">Back to Home</a>
+  <!-- BACK -->
+  <a href="../index.html" class="back-link">
+    <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    back to home
+  </a>
 
   <!-- HEADER -->
-  <header class="project-header">
-    <div class="project-eyebrow">Robotics · Computer Vision · ROS</div>
-    <h1>Vision-Guided UR3 Robotic Drawing System</h1>
-    <p class="project-subtitle">
-      A ROS-based robotic drawing system that converts a captured selfie into vectorized contours
-      and reproduces it on paper using a UR3 robot arm — from live image to physical drawing.
-    </p>
+  <header class="reveal">
+    <div class="project-eyebrow">// robotics · computer vision · ros</div>
+    <div class="project-header">
+      <h1>Vision-Guided UR3<br><em>Robotic Drawing</em> System</h1>
+      <p class="project-subtitle">
+        A ROS-based pipeline that captures a live selfie, extracts facial contours through
+        computer vision, and drives a UR3 robot arm to reproduce the portrait on paper —
+        end-to-end, from pixels to physical strokes.
+      </p>
+    </div>
     <div class="project-meta">
       <span class="meta-tag">Python</span>
       <span class="meta-tag">ROS</span>
       <span class="meta-tag">OpenCV</span>
       <span class="meta-tag">MoveIt</span>
       <span class="meta-tag">Inverse Kinematics</span>
-      <span class="meta-tag">RGB-D Camera</span>
-      <span class="meta-tag">Jan 2024 — Jun 2024</span>
+      <span class="meta-tag">Intel RealSense</span>
+      <span class="meta-tag">UR3</span>
+      <span class="meta-tag date">Jan – Jun 2024</span>
     </div>
   </header>
 
   <!-- HERO IMAGE -->
-  <img src="../images/ur3/hero.jpg" alt="UR3 drawing setup" class="hero-project-image" />
+  <img src="../images/ur3/hero.jpg" alt="UR3 robotic drawing system setup" class="hero-project-image reveal" />
 
   <!-- OVERVIEW -->
-  <section class="project-section">
-    <div class="overview-grid">
-      <div class="overview-card">
-        <h3>Problem</h3>
-        <p>Transform a captured selfie into a drawable path and accurately reproduce it on paper using a robotic arm.</p>
-      </div>
-      <div class="overview-card">
-        <h3>My Role</h3>
-        <p>Image processing pipeline, UR3 motion control, paper detection, and 3D coordinate transformation.</p>
-      </div>
-      <div class="overview-card">
-        <h3>Outcome</h3>
-        <p>End-to-end robotic drawing pipeline with sub-2mm drawing error and smooth trajectory execution.</p>
-      </div>
+  <div class="overview-grid">
+    <div class="overview-card reveal">
+      <h3>Problem</h3>
+      <p>Transform a live selfie into a precise drawing path and reproduce it on physical paper using a 6-DOF robot arm.</p>
     </div>
-  </section>
+    <div class="overview-card reveal">
+      <h3>My Role</h3>
+      <p>Full-stack: image processing pipeline, coordinate transformation, MoveIt motion control, and paper detection.</p>
+    </div>
+    <div class="overview-card reveal">
+      <h3>Outcome</h3>
+      <p>Working end-to-end system with sub-2 mm drawing error and 40% reduction in path redundancy via TSP optimisation.</p>
+    </div>
+  </div>
 
   <!-- SYSTEM WORKFLOW -->
-  <section class="project-section">
-    <h2>System Workflow</h2>
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">01.</span>
+      <h2>System Workflow</h2>
+      <div class="section-line"></div>
+    </div>
     <p>
-      The system captures a selfie, removes the background, extracts facial contours,
-      vectorizes the edges, optimizes the drawing path via TSP heuristics, maps the
-      coordinate frame to the physical paper, and executes the path using UR3 robotic control.
+      The pipeline runs in six stages: selfie capture → background removal → edge extraction &amp;
+      vectorisation → TSP path optimisation → paper corner detection → UR3 trajectory execution.
+      Each stage was independently validated before full-system integration.
     </p>
-    <!-- workflow.jpg is white-bg diagram — shown in light card -->
+    <!-- White-bg workflow diagram — rendered in off-white card -->
     <div class="diagram-card">
       <img src="../images/ur3/workflow.jpg" alt="UR3 system workflow diagram" />
     </div>
   </section>
 
   <!-- IMAGE PROCESSING -->
-  <section class="project-section">
-    <h2>Image Processing Pipeline</h2>
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">02.</span>
+      <h2>Image Processing Pipeline</h2>
+      <div class="section-line"></div>
+    </div>
     <div class="two-column">
       <div>
         <p>
-          Developed a complete image processing pipeline: background removal, grayscale conversion,
-          facial landmark detection, edge extraction, contour processing, and vectorization.
-          Three interpolation methods were evaluated — nearest neighbour, bilinear, and bicubic —
-          with bicubic selected for its path smoothness.
+          Built a complete vision pipeline from raw selfie to drawable vector paths.
+          Background removal isolates the face; Canny edge detection with contour hierarchy
+          analysis extracts stroke candidates; three interpolation methods — nearest neighbour,
+          bilinear, and bicubic — were benchmarked, with bicubic selected for path smoothness.
         </p>
         <ul class="project-list">
-          <li>Background removal via rembg / depth thresholding</li>
-          <li>Canny edge detection + contour hierarchy analysis</li>
-          <li>Vectorized stroke generation from pixel contours</li>
-          <li>TSP heuristic path optimization — 40% reduction in redundant movement</li>
+          <li>Background removal via depth thresholding + rembg</li>
+          <li>Canny edge detection with contour hierarchy filtering</li>
+          <li>Bicubic interpolation for vectorised stroke generation</li>
+          <li>TSP heuristic path optimisation — 40% fewer redundant moves</li>
         </ul>
       </div>
-      <!-- pipeline.jpg is a result photo — normal dark treatment -->
-      <img src="../images/ur3/pipeline.jpg" alt="Image processing pipeline result" class="side-image" />
+      <img src="../images/ur3/pipeline.jpg" alt="Image processing pipeline stages" class="side-image" />
     </div>
   </section>
 
   <!-- COORDINATE MAPPING -->
-  <section class="project-section">
-    <h2>Paper Detection &amp; Coordinate Mapping</h2>
-    <div class="two-column">
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">03.</span>
+      <h2>Paper Detection &amp; Coordinate Mapping</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column flip">
       <div>
         <p>
-          Mounted an Intel RealSense RGB-D camera on the UR3 end effector to detect paper corners
-          in real time using colour and depth segmentation. Local camera coordinates were transformed
-          into the UR3 global frame via a calibrated homography, ensuring the drawing was correctly
-          aligned and scaled to the paper surface regardless of placement.
+          An Intel RealSense D435 RGB-D camera mounted on the UR3 end-effector detects
+          paper corners in real time using colour segmentation and depth filtering.
+          A calibrated homography maps local camera coordinates into the UR3 world frame,
+          ensuring the drawing aligns and scales correctly regardless of paper placement.
         </p>
+        <ul class="project-list">
+          <li>RealSense D435 depth + colour fusion for corner detection</li>
+          <li>Homography calibration: camera frame → UR3 world frame</li>
+          <li>Adaptive scaling to paper dimensions at runtime</li>
+        </ul>
       </div>
-      <!-- mapping.jpg likely a diagram — light card -->
-      <div class="diagram-card side-diagram tall">
-        <img src="../images/ur3/mapping.jpg" alt="Paper coordinate mapping diagram" />
+      <!-- Likely a diagram — off-white card -->
+      <div class="diagram-card inline tall">
+        <img src="../images/ur3/mapping.jpg" alt="Coordinate mapping diagram" />
       </div>
     </div>
   </section>
 
   <!-- ROBOT CONTROL -->
-  <section class="project-section">
-    <h2>Robot Motion Control</h2>
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">04.</span>
+      <h2>Robot Motion Control</h2>
+      <div class="section-line"></div>
+    </div>
     <div class="two-column">
       <div>
         <p>
-          Implemented smooth UR3 trajectory execution using inverse kinematics, MoveIt path planning,
-          and joint trajectory monitoring. Pen length compensation was incorporated into the tool
-          frame to maintain consistent contact force and line quality throughout the drawing.
+          UR3 trajectory execution uses MoveIt for collision-aware path planning,
+          with real-time IK solving and joint limit monitoring. Pen length compensation
+          is baked into the tool centre point (TCP) calibration to maintain consistent
+          contact pressure across the full drawing area.
         </p>
         <ul class="project-list">
           <li>MoveIt motion planning with collision avoidance</li>
-          <li>Real-time IK with joint limit monitoring</li>
-          <li>Tool centre point (TCP) calibration for pen tip offset</li>
-          <li>Drawing error &lt; 2 mm across full paper area</li>
+          <li>Real-time inverse kinematics with joint limit checks</li>
+          <li>TCP calibration incorporating pen tip offset</li>
+          <li>Drawing error &lt; 2 mm across full A4 area</li>
         </ul>
+        <div class="highlight-box">
+          <p><strong>Key result:</strong> sub-2 mm positional accuracy maintained throughout continuous drawing sequences exceeding 300 waypoints.</p>
+        </div>
       </div>
-      <img src="../images/ur3/trajectory.jpg" alt="UR3 trajectory plot" class="side-image" />
+      <img src="../images/ur3/trajectory.jpg" alt="UR3 joint trajectory plot" class="side-image" />
     </div>
   </section>
 
   <!-- FINAL RESULT -->
-  <section class="project-section">
-    <h2>Final Result</h2>
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">05.</span>
+      <h2>Final Result</h2>
+      <div class="section-line"></div>
+    </div>
     <p>
-      Successfully integrated perception, coordinate transformation, path planning, and robotic
-      execution into a working physical system capable of drawing vectorized selfie portraits on paper.
+      The complete system — perception, coordinate transformation, path planning, and robotic
+      execution — was demonstrated live, producing vectorised selfie portraits on paper.
+      The pipeline runs fully autonomously from shutter click to final pen lift.
     </p>
-    <img src="../images/ur3/result.jpg" alt="Final UR3 drawing result" class="hero-project-image" />
+    <img src="../images/ur3/result.jpg" alt="Final UR3 drawing output" class="hero-project-image" style="margin-bottom:0;" />
   </section>
 
   <!-- FOOTER NAV -->
   <div class="project-footer">
-    <a href="../index.html" class="back-link" style="margin-bottom:0;">Back to Home</a>
-    <nav class="project-footer-nav">
-      <a href="rgbd.html">Next: RGB-D Camera →</a>
-    </nav>
+    <a href="../index.html" class="back-proj">
+      <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      all projects
+    </a>
+    <a href="rgbd.html" class="next-proj">
+      RGB-D Camera Positioning
+      <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </div>
 
 </main>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <span>Haiyang Sun · Mechatronics Engineer</span>
+  <span>Sydney, AU · <a href="mailto:tedsun7@gmail.com">tedsun7@gmail.com</a></span>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>

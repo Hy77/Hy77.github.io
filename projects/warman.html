@@ -3,119 +3,215 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>36th WARMAN Competition Robot Design and Integration</title>
-  <link rel="stylesheet" href="../style_ver1.css" />
+  <title>The 36th WARMAN Competition Robot — Haiyang Sun</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230f2027'/><text y='.9em' font-size='62' x='12' font-family='Georgia,serif' fill='%234ade80'>H</text></svg>">
+  <link rel="stylesheet" href="project.css" />
 </head>
 <body>
-  <main class="container project-page">
-    <a href="../index.html" class="back-link">Back to Home</a>
 
-    <h1>36th WARMAN Competition Robot Design and Integration</h1>
-    <p class="project-subtitle">
-      A competition-driven mechatronics robot designed for ball collection, silo placement,
-      and stable mobile manipulation under strict size, weight, and time constraints.
-    </p>
+<nav>
+  <a href="../index.html" class="nav-logo">hs.dev</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#projects"><span>//</span>projects</a></li>
+    <li><a href="../index.html#contact"><span>//</span>contact</a></li>
+  </ul>
+</nav>
 
-    <!-- Hero Image -->
-    <img src="../images/warman/hero.jpg" alt="WARMAN robot overview" class="hero-project-image" />
+<main class="project-page">
 
-    <section class="project-section warman-track-section">
-        <h3>Competition Track Context</h3>
-        <img src="../images/warman/track.jpg" alt="WARMAN competition field layout" class="warman-track" />
-    </section>
+  <a href="../index.html" class="back-link">
+    <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    back to home
+  </a>
 
-    <!-- Quick Overview -->
-    <section class="project-section">
-      <div class="overview-grid">
-        <div>
-          <h3>Problem</h3>
-          <p>Design and build a robot under competition constraints to collect balls and place them into silos within a limited time.</p>
-        </div>
-        <div>
-          <h3>My Role</h3>
-          <p>Team leader, chassis designer, lead programmer, and contributor to system integration, component selection, and testing.</p>
-        </div>
-        <div>
-          <h3>Outcome</h3>
-          <p>Developed an integrated robot platform combining mobile base, anti-rollover support, robotic arm extension, and embedded control logic.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- System Overview -->
-    <section class="project-section">
-      <h2>System Overview</h2>
-      <p>
-        The WARMAN robot was designed to collect tennis and squash balls and place them into
-        silos of different heights under strict competition limits on footprint, weight, and task time.
-        The final system combined a Mecanum-wheel mobile base, a robotic arm, a collector mechanism,
-        and anti-rollover support to improve stability during arm extension and placement.
+  <header class="reveal">
+    <div class="project-eyebrow">// mechatronics · embedded systems · competition</div>
+    <div class="project-header">
+      <h1>The 36th WARMAN Competition Robot Design &amp; Integration</h1>
+      <p class="project-subtitle">
+        A competition-driven mechatronics robot designed for ball collection and silo placement,
+        built under strict size, weight, and time constraints — led as team leader and lead programmer.
       </p>
-      <img src="../images/warman/workflow.jpg" alt="WARMAN system overview" class="section-image" />
-    </section>
+    </div>
+    <div class="project-meta">
+      <span class="meta-tag">Arduino Mega2560</span>
+      <span class="meta-tag">Mecanum Drive</span>
+      <span class="meta-tag">SolidWorks</span>
+      <span class="meta-tag">Embedded C</span>
+      <span class="meta-tag">Systems Integration</span>
+      <span class="meta-tag">Team Leadership</span>
+      <span class="meta-tag date">2023</span>
+    </div>
+  </header>
 
-    <!-- Design Process -->
-    <section class="project-section two-column">
+  <img src="../images/warman/hero.jpg" alt="WARMAN robot overview" class="hero-project-image reveal" />
+
+  <div class="overview-grid">
+    <div class="overview-card reveal">
+      <h3>Problem</h3>
+      <p>Design and build a robot under competition constraints to collect balls and place them into silos within a limited time.</p>
+    </div>
+    <div class="overview-card reveal">
+      <h3>My Role</h3>
+      <p>Team leader, chassis designer, lead programmer — responsible for system architecture, component selection, integration, and competition execution.</p>
+    </div>
+    <div class="overview-card reveal">
+      <h3>Outcome</h3>
+      <p>Integrated robot platform combining Mecanum mobile base, anti-rollover support, robotic arm extension, and coordinated embedded control logic.</p>
+    </div>
+  </div>
+
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">01.</span>
+      <h2>Competition Context</h2>
+      <div class="section-line"></div>
+    </div>
+    <p>
+      The WARMAN Design &amp; Build Competition challenges student teams to design, build, and operate
+      a robot that collects tennis and squash balls and places them into silos of varying heights —
+      all within strict limits on footprint, weight, and task time. The track layout required
+      multi-directional mobility and precise arm placement.
+    </p>
+    <img src="../images/warman/track.jpg" alt="WARMAN competition field layout" class="section-image" style="max-width:60%; margin: 24px auto; display:block;" />
+  </section>
+
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">02.</span>
+      <h2>System Overview</h2>
+      <div class="section-line"></div>
+    </div>
+    <p>
+      The final system combined a Mecanum-wheel mobile base for omnidirectional movement,
+      a robotic arm for silo placement, a collection mechanism for ball intake, and extendable
+      anti-rollover support to stabilise the robot during arm extension.
+    </p>
+    <div class="diagram-card">
+      <img src="../images/warman/workflow.jpg" alt="WARMAN system overview diagram" />
+    </div>
+  </section>
+
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">03.</span>
+      <h2>Requirement-Driven Design Process</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column">
       <div>
-        <h2>Requirement-Driven Design Process</h2>
         <p>
-          The design process used requirement analysis, morphological tables, and scoring matrices
-          to evaluate alternatives for chassis layout, support mechanisms, manufacturability, weight,
-          cost, and stability. This helped guide concept selection in a structured engineering way
-          rather than relying only on intuition.
+          Design decisions were guided by requirement analysis, morphological tables, and weighted
+          scoring matrices. Criteria included chassis layout, support mechanism options,
+          manufacturability, weight budget, cost, and stability under arm extension loads.
+        </p>
+        <p>
+          This structured process helped the team converge on design choices confidently rather
+          than relying purely on intuition, and made trade-off decisions traceable during review.
         </p>
       </div>
       <img src="../images/warman/design.jpg" alt="Requirement analysis and concept selection" class="side-image" />
-    </section>
+    </div>
+  </section>
 
-    <!-- Mechanical Design -->
-    <section class="project-section two-column">
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">04.</span>
+      <h2>Base and Anti-Rollover Mechanism</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column flip">
       <div>
-        <h2>Base and Anti-Rollover Mechanism</h2>
         <p>
-          A major design challenge was maintaining stability while the arm extended toward the silo.
-          The chassis incorporated anti-rollover protection and later evolved into an extendable support
-          mechanism to improve the robot’s stability without violating competition size limits.
+          A major challenge was maintaining stability while the arm extended to reach high silos.
+          The chassis incorporated anti-rollover protection that evolved into a deployable outrigger
+          mechanism, improving stability at extension without violating the competition's size limits
+          when retracted.
         </p>
+        <ul class="project-list">
+          <li>Deployable outrigger that folds within footprint limits</li>
+          <li>CG analysis to validate tipping margins at full arm extension</li>
+          <li>SolidWorks FEA used to validate structural load paths</li>
+        </ul>
       </div>
       <img src="../images/warman/base.jpg" alt="Base and anti-rollover design" class="side-image" />
-    </section>
+    </div>
+  </section>
 
-    <!-- Embedded Control -->
-    <section class="project-section two-column">
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">05.</span>
+      <h2>Embedded Control &amp; Mecanum Drive</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column">
       <div>
-        <h2>Embedded Control and Mecanum Drive</h2>
         <p>
-          The robot was controlled using an Arduino Mega2560 with TB6612-based motor driving logic.
-          The control structure supported Mecanum wheel motion, arm actuation, collection control,
-          and coordinated task execution through modular embedded code.
+          The robot was controlled via an Arduino Mega2560 with TB6612-based motor drivers.
+          The control architecture handled Mecanum wheel kinematics, arm actuation sequencing,
+          collection mechanism control, and coordinated task execution through modular embedded code.
         </p>
+        <ul class="project-list">
+          <li>Mecanum wheel inverse kinematics for omnidirectional motion</li>
+          <li>TB6612 dual H-bridge driver per motor pair</li>
+          <li>State-machine task sequencing for competition routine</li>
+          <li>Serial debug interface for pre-competition tuning</li>
+        </ul>
       </div>
       <img src="../images/warman/control.jpg" alt="Embedded control and motor selection" class="side-image" />
-    </section>
+    </div>
+  </section>
 
-    <!-- Integration -->
-    <section class="project-section two-column">
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">06.</span>
+      <h2>System Integration</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column flip">
       <div>
-        <h2>System Integration</h2>
         <p>
-          The final robot integrated mechanical structure, wiring, control electronics, and motion logic
-          into a complete competition-ready system. This project strengthened my experience in
-          design-for-manufacture, hardware-software integration, and iterative testing under real constraints.
+          Final integration brought together the mechanical structure, wiring harness, control
+          electronics, and motion logic into a competition-ready system. Cable routing, connector
+          selection, and power distribution were all iterated to survive repeated handling and
+          the physical demands of competition runs.
+        </p>
+        <p>
+          This project strengthened my end-to-end mechatronics experience — from concept through
+          manufacturing to hardware-software integration and live competition deployment.
         </p>
       </div>
       <img src="../images/warman/integration.jpg" alt="Wiring and system integration" class="side-image" />
-    </section>
+    </div>
+  </section>
 
-    <!-- Key Takeaways -->
-    <section class="project-section">
-      <h2>Key Takeaways</h2>
-      <p>
-        This project was a strong exercise in full-cycle mechatronics engineering: translating task requirements
-        into mechanical concepts, validating design trade-offs, building the robot, and implementing the
-        embedded control logic needed to coordinate the full system.
-      </p>
-    </section>
-  </main>
+  <div class="project-footer">
+    <a href="../index.html" class="back-proj">
+      <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      all projects
+    </a>
+    <a href="pipe_rob.html" class="next-proj">
+      Pipe Inspection Robot
+      <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</main>
+
+<footer class="page-footer">
+  <span>Haiyang Sun · Mechatronics Engineer</span>
+  <span>Sydney, AU · <a href="mailto:tedsun7@gmail.com">tedsun7@gmail.com</a></span>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>

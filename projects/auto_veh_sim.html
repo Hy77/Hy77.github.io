@@ -3,122 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROS-Based Autonomous Ackerman Track Racing</title>
-  <link rel="stylesheet" href="../style_ver1.css" />
+  <title>ROS-Based Autonomous Ackermann Track Racing — Haiyang Sun</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230f2027'/><text y='.9em' font-size='62' x='12' font-family='Georgia,serif' fill='%234ade80'>H</text></svg>">
+  <link rel="stylesheet" href="project.css" />
 </head>
 <body>
-  <main class="container project-page">
-    <a href="../index.html" class="back-link">Back to Home</a>
 
-    <h1>ROS-Based Autonomous Ackerman Track Racing</h1>
-    <p class="project-subtitle">
-      A ROS-based autonomous driving simulation pipeline using laser perception, cone-based road-centre validation,
-      and Ackerman steering control for track racing in Gazebo and RViz.
-    </p>
+<nav>
+  <a href="../index.html" class="nav-logo">hs.dev</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#projects"><span>//</span>projects</a></li>
+    <li><a href="../index.html#contact"><span>//</span>contact</a></li>
+  </ul>
+</nav>
 
-    <img src="../images/auto_veh_sim/hero.jpg" alt="Ackerman track racing hero" class="hero-project-image" />
+<main class="project-page">
 
-    <section class="project-section">
-      <div class="overview-grid">
-        <div>
-          <h3>Problem</h3>
-          <p>
-            Build a ROS node that uses laser data to detect cones, validate road-centre goals,
-            and autonomously complete a simulated racing lap.
-          </p>
+  <a href="../index.html" class="back-link">
+    <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    back to home
+  </a>
+
+  <header class="reveal">
+    <div class="project-eyebrow">// autonomous systems · ROS · simulation</div>
+    <div class="project-header">
+      <h1>ROS-Based Autonomous Ackermann Track Racing</h1>
+      <p class="project-subtitle">
+        A ROS autonomous driving pipeline using laser perception, cone-based road-centre validation,
+        and Ackermann steering control to complete simulated racing laps in Gazebo and RViz.
+      </p>
+    </div>
+    <div class="project-meta">
+      <span class="meta-tag">ROS</span>
+      <span class="meta-tag">Python</span>
+      <span class="meta-tag">Gazebo</span>
+      <span class="meta-tag">RViz</span>
+      <span class="meta-tag">LiDAR Perception</span>
+      <span class="meta-tag">Ackermann Steering</span>
+      <span class="meta-tag">Path Planning</span>
+      <span class="meta-tag date">2023 – 2024</span>
+    </div>
+  </header>
+
+  <img src="../images/auto_veh_sim/hero.jpg" alt="Ackermann track racing simulation" class="hero-project-image reveal" />
+
+  <div class="overview-grid">
+    <div class="overview-card reveal">
+      <h3>Problem</h3>
+      <p>Build a ROS node that uses laser scan data to detect cones, validate road-centre goals, and autonomously complete a simulated racing lap.</p>
+    </div>
+    <div class="overview-card reveal">
+      <h3>My Role</h3>
+      <p>Designed the full ROS perception-control pipeline — laser-based cone validation, steering logic, braking behaviour, and mission service lifecycle.</p>
+    </div>
+    <div class="overview-card reveal">
+      <h3>Outcome</h3>
+      <p>Stable multi-goal waypoint tracking with real-time steering updates, braking control, and service-based mission management across full lap completion.</p>
+    </div>
+  </div>
+
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">01.</span>
+      <h2>ROS System Design</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column">
+      <div>
+        <p>
+          The system runs as a ROS node subscribing to vehicle odometry, laser scan data, and
+          externally supplied goal waypoints. Control outputs are published as steering, throttle,
+          and brake commands to the Ackermann platform driver.
+        </p>
+        <p>
+          A service interface handles mission lifecycle — the vehicle stays idle until explicitly
+          activated, then executes the lap autonomously and returns to idle on completion or abort.
+        </p>
+        <ul class="project-list">
+          <li>Subscribers: odometry, LaserScan, goal waypoints</li>
+          <li>Publishers: AckermannDriveStamped control commands</li>
+          <li>ROS service: start / stop mission with state transitions</li>
+        </ul>
+      </div>
+      <div class="diagram-card inline">
+        <img src="../images/auto_veh_sim/system.jpg" alt="ROS system architecture diagram" />
+      </div>
+    </div>
+  </section>
+
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">02.</span>
+      <h2>Cone Perception &amp; Goal Validation</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column flip">
+      <div>
+        <p>
+          Front-facing laser scan data is processed to detect cone pairs defining the track
+          boundaries. The perception module then validates whether each candidate goal waypoint
+          falls within the drivable corridor formed by the detected cone boundaries.
+        </p>
+        <p>
+          Only verified road-centre waypoints are passed to the controller, preventing the vehicle
+          from pursuing invalid or out-of-bounds trajectories during the lap.
+        </p>
+        <ul class="project-list">
+          <li>LiDAR point clustering to identify cone positions</li>
+          <li>Geometric corridor check: goal must lie between cone pair</li>
+          <li>Invalid goals silently skipped — next valid goal selected</li>
+        </ul>
+      </div>
+      <img src="../images/auto_veh_sim/cones.jpg" alt="Cone detection and goal validation" class="side-image" />
+    </div>
+  </section>
+
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">03.</span>
+      <h2>Ackermann Control Execution</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column">
+      <div>
+        <p>
+          The controller continuously computes steering angle toward the next validated goal
+          using heading error. Throttle and braking are modulated based on proximity to the
+          waypoint and the magnitude of steering demand — slowing into tight turns and
+          accelerating on straights.
+        </p>
+        <ul class="project-list">
+          <li>Proportional heading error → steering angle mapping</li>
+          <li>Speed modulation: throttle reduced at high steering demand</li>
+          <li>Braking triggered within a configurable goal arrival radius</li>
+          <li>Safeguards for extreme steering angles and mission abort</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>Key result:</strong> stable waypoint tracking maintained through multi-turn lap sequences with no manual intervention required.</p>
         </div>
-        <div>
-          <h3>My Role</h3>
-          <p>
-            Designed the ROS perception-control pipeline, implemented laser-based cone validation,
-            steering logic, braking behaviour, and mission service lifecycle.
-          </p>
-        </div>
-        <div>
-          <h3>Outcome</h3>
-          <p>
-            Achieved stable multi-goal waypoint tracking with real-time steering updates,
-            braking control, and service-based mission management.
-          </p>
-        </div>
       </div>
-    </section>
+      <img src="../images/auto_veh_sim/control.jpg" alt="Ackermann control execution" class="side-image" />
+    </div>
+  </section>
 
-    <section class="project-section two-column">
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">04.</span>
+      <h2>Mission Service &amp; Testing</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="two-column flip">
       <div>
-        <h2>ROS System Design</h2>
         <p>
-          The system was developed as a ROS node subscribing to vehicle odometry,
-          laser scan data, and externally supplied goals. Control outputs were published
-          as steering, throttle, and brake commands for the Ackerman platform.
+          A ROS service endpoint manages explicit start and stop of the racing mission.
+          This enables controlled lifecycle transitions, easier debugging between runs,
+          and safer simulation resets without restarting the node.
         </p>
         <p>
-          A service interface was implemented to start and terminate the mission safely,
-          allowing the vehicle to remain idle until explicitly activated.
+          Service testing confirmed correct idle → running → stopped state transitions
+          while preserving vehicle stability at each boundary.
         </p>
-      </div>
-      <img src="../images/auto_veh_sim/system.jpg" alt="ROS system architecture" class="side-image" />
-    </section>
-
-    <section class="project-section two-column">
-      <div>
-        <h2>Cone Perception and Goal Validation</h2>
-        <p>
-          Front-facing laser scan data was used to detect cone pairs defining the track boundaries.
-          The perception module verified whether each candidate goal lay within the drivable region
-          formed by the cone boundaries.
-        </p>
-        <p>
-          This ensured that only safe and valid road-centre waypoints were passed to the controller,
-          improving mission reliability and preventing invalid trajectory execution.
-        </p>
-      </div>
-      <img src="../images/auto_veh_sim/cones.jpg" alt="Cone detection and validation" class="side-image" />
-    </section>
-
-    <section class="project-section two-column">
-      <div>
-        <h2>Ackerman Control Execution</h2>
-        <p>
-          The controller continuously computed steering commands toward the next validated goal.
-          Throttle and braking logic were adjusted based on proximity to the waypoint and steering demand.
-        </p>
-        <p>
-          Additional safeguards handled extreme steering angles and mission abort conditions,
-          ensuring robust control execution during tight turns and sparse cone layouts.
-        </p>
-      </div>
-      <img src="../images/auto_veh_sim/control.jpg" alt="Ackerman control execution" class="side-image" />
-    </section>
-
-    <section class="project-section two-column">
-      <div>
-        <h2>Mission Service Testing</h2>
-        <p>
-          A ROS service endpoint was implemented to explicitly start and terminate the racing mission.
-          This allowed controlled lifecycle management, easier debugging, and safer simulation resets
-          during repeated testing.
-        </p>
-        <p>
-          Service testing confirmed correct transitions between idle, running, and stopped states
-          while preserving vehicle stability.
-        </p>
+        <ul class="project-list">
+          <li>rosservice call interface for mission start / abort</li>
+          <li>State machine: IDLE → RUNNING → STOPPED</li>
+          <li>Vehicle holds position on stop; resumes cleanly on restart</li>
+        </ul>
       </div>
       <img src="../images/auto_veh_sim/service.jpg" alt="ROS service mission control" class="side-image" />
-    </section>
+    </div>
+  </section>
 
-    <section class="project-section">
+  <section class="project-section reveal">
+    <div class="project-section-header">
+      <span class="section-num">05.</span>
       <h2>Key Findings</h2>
-      <p>
-        This project strengthened my experience in ROS node architecture, real-time perception-control
-        integration, laser-based geometric reasoning, and simulation-oriented validation workflows.
-      </p>
-      <p>
-        The most valuable engineering lesson was designing a modular autonomy stack where sensing,
-        goal validation, control, and mission lifecycle management could be tested independently
-        yet operate robustly as a unified system.
-      </p>
-    </section>
-  </main>
+      <div class="section-line"></div>
+    </div>
+    <p>
+      The most valuable engineering lesson was designing a modular autonomy stack where sensing,
+      goal validation, control, and mission lifecycle management could each be tested independently
+      yet operate robustly as a unified system. Decoupling the perception layer from the controller
+      made debugging significantly faster — a bad waypoint was immediately identifiable as a
+      perception issue rather than a control one.
+    </p>
+    <p>
+      This project strengthened my experience in ROS node architecture, real-time
+      perception-control integration, laser-based geometric reasoning, and
+      simulation-oriented validation workflows.
+    </p>
+  </section>
+
+  <div class="project-footer">
+    <a href="../index.html" class="back-proj">
+      <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      all projects
+    </a>
+    <a href="mario.html" class="next-proj">
+      Deep RL for Super Mario
+      <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</main>
+
+<footer class="page-footer">
+  <span>Haiyang Sun · Mechatronics Engineer</span>
+  <span>Sydney, AU · <a href="mailto:tedsun7@gmail.com">tedsun7@gmail.com</a></span>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
